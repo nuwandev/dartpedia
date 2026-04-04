@@ -1,3 +1,5 @@
+import '../command_runner.dart';
+
 enum OptionType { flag, option }
 
 abstract class Argument {
@@ -47,4 +49,24 @@ class Option extends Argument {
 
     return '--$name: $help';
   }
+}
+
+abstract class Command extends Argument {
+  @override
+  String get name;
+
+  String get description;
+
+  bool get requiredArguments => false;
+
+  late CommandRunner runner;
+
+  @override
+  String? help;
+
+  @override
+  String? defaultValue;
+
+  @override
+  String? valueHelp;
 }
